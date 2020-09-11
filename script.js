@@ -1,3 +1,7 @@
+// Displays the current 'Day of Week', 'Month', 'Day', Year at the top of the page
+$("#currentDay").text(moment().format("dddd, MMM Do YYYY"));
+
+
 let container = $(".container");
 let time = "";
 time = "5:00AM";
