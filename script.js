@@ -1,6 +1,13 @@
-// Displays the current 'Day of Week', 'Month', 'Day', Year at the top of the page
-$("#currentDay").text(moment().format("dddd, MMM Do YYYY"));
+// Displays 'Day of Week', 'Month' & 'Day' & 'Year', 'Current Time' at the top of the page
+let currentTime = moment().format("dddd, MMM Do YYYY, HH:mm A");
+$("#currentDay").text(currentTime);
 
+// Puts currentTime components into an array
+let array = [];
+array.push(currentTime);
+console.log(array);
+
+let workHours = ["07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
 
 let container = $(".container");
 let time = "";
