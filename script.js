@@ -2,10 +2,20 @@
 let currentTime = moment().format("dddd, MMM Do YYYY, HH:mm A");
 $("#currentDay").text(currentTime);
 
+
 // Puts currentTime components into an array
 let array = [];
-array.push(currentTime);
+array.push("Current time: " + currentTime);
 console.log(array);
+
+let timeCompare = " ";
+timeCompare = currentTime.split(", ");
+console.log("Split current time: " + timeCompare);
+console.log("Hour: " + timeCompare[2]);
+
+let hourCompare = [];
+hourCompare = timeCompare[2].split(":");
+console.log("Hour Split: " + hourCompare[0]);
 
 // Array of hours considered workHours that will be displayed
 let workHours = ["07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
