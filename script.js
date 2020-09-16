@@ -5,38 +5,23 @@ $("#currentDay").text(currentTime);
 
 // Puts currentTime components into an array
 let array = [];
-array.push("Current time: " + currentTime);
-console.log(array);
+array.push(currentTime);
+console.log("Current time: " + array);
 
 
 // Splits the currentTime components into three: day, date, time
 let timeCompare = " ";
 timeCompare = currentTime.split(", ");
 console.log("Split current time: " + timeCompare);
-console.log("Hour: " + timeCompare[2]);
+console.log("Hour Only #: " + timeCompare[2]);
 
 
 // Splits the time component and store just the hour 05, 06, etc
 let hourCompare = [];
 hourCompare = timeCompare[2].split(":");
-console.log("Hour Split: " + hourCompare[0]);
+console.log("hourCompare Variable: " + hourCompare[0]);
 
-
-// Array of hours considered workHours that will be displayed
-// let workHours = [
-//     { 07: ":00 AM" },
-//     { 08: ":00 AM" },
-//     { 09: ":00 AM" },
-//     { 10: ":00 AM" },
-//     { 11: ":00 AM" },
-//     { 12: ":00 PM" },
-//     { 01: ":00 PM" },
-//     { 02: ":00 PM" },
-//     { 03: ":00 PM" },
-//     { 04: ":00 PM" }
-// ]
-
-
+// Array of work hours
 let workHours = [
     {
         hour: "07",
@@ -67,23 +52,22 @@ let workHours = [
         minutes: ":00 PM"
     },
     {
-        hour: "14",
+        hour: "22",
         minutes: ":00 PM"
     },
     {
-        hour: "15",
+        hour: "23",
         minutes: ":00 PM"
     },
     {
-        hour: "16",
+        hour: "24",
         minutes: ":00 PM"
     }
 ];
 
 
-
 // Links to the 'container' <div> on the html. ***Delete CLASS***
-let container = $(".container").addClass("past");
+let container = $(".container")//.addClass("past");
 
 // This loop creates all the ROWS based on the number of items in workHours array
 for (let i = 0; i < workHours.length; i++) {
@@ -114,29 +98,28 @@ for (let i = 0; i < workHours.length; i++) {
     // Displays the new ROW (i.e. workHour, inputText, saveButton)
     container.append(newRow);
 
+    // Evalutes the current time commpared to the "row time" and color codes accordingly as past, present, future
+    if (parseInt(workHours[i].hour) < parseInt(hourCompare)) {
+        input.addClass("past");
+    } else if (parseInt(workHours[i].hour) === parseInt(hourCompare)) {
+        input.addClass("present");
+    } else if (parseInt(workHours[i].hour) > parseInt(hourCompare)) {
+        input.addClass("future");
+    }
 };
 
+// Saves the input entered in the text area to local storage
 $(".save-btn").on("click", function () {
     let inputStored = $(this).parent().siblings(".col-md-8").children(".input.textarea").val();
     let time = $(this).attr("date-time")
     console.log(inputStored)
     console.log(time);
-    // inputStored.addClass("save-btn");
-    // inputStored.text($(this).attr("date-time", workHours[i].hour));
     localStorage.setItem(time, inputStored);
-
 });
 
-
+// Retrieves the local storage and writes it to the specified time block
 $(".input.textarea").each(function () {
     let savedInput = $(this).parent(".col-md-8").siblings(".col-md-2").children(".save-btn").attr("date-time");
     let savedInfo = localStorage.getItem(savedInput);
     $(this).val(savedInfo);
 });
-
-
-for (let i = 0; i < workHours.length; i++) {
-    if (workHours[i].hour < hourCompare) {
-        console.log(this);
-    }
-}
