@@ -38,37 +38,47 @@ console.log("Hour Split: " + hourCompare[0]);
 
 
 let workHours = [
-    { 
+    {
         hour: "07",
-        minutes: ":00 AM" },
-    { 
+        minutes: ":00 AM"
+    },
+    {
         hour: "08",
-        minutes: ":00 AM" },
+        minutes: ":00 AM"
+    },
     {
         hour: "09",
-        minutes: ":00 AM" },
-    { 
+        minutes: ":00 AM"
+    },
+    {
         hour: "10",
-        minutes: ":00 AM" },
-    { 
+        minutes: ":00 AM"
+    },
+    {
         hour: "11",
-        minutes: ":00 AM" },
-    { 
+        minutes: ":00 AM"
+    },
+    {
         hour: "12",
-        minutes: ":00 PM" },
-    { 
-        hour: "01",
-        minutes: ":00 PM" },
-    { 
-        hour: "02",
-        minutes: ":00 PM" },
-    { 
-        hour: "03",
-        minutes: ":00 PM" },
-    { 
-        hour: "04", 
-        minutes: ":00 PM" }
-]
+        minutes: ":00 PM"
+    },
+    {
+        hour: "13",
+        minutes: ":00 PM"
+    },
+    {
+        hour: "14",
+        minutes: ":00 PM"
+    },
+    {
+        hour: "15",
+        minutes: ":00 PM"
+    },
+    {
+        hour: "16",
+        minutes: ":00 PM"
+    }
+];
 
 
 
@@ -104,4 +114,29 @@ for (let i = 0; i < workHours.length; i++) {
     // Displays the new ROW (i.e. workHour, inputText, saveButton)
     container.append(newRow);
 
+};
+
+$(".save-btn").on("click", function () {
+    let inputStored = $(this).parent().siblings(".col-md-8").children(".input.textarea").val();
+    let time = $(this).attr("date-time")
+    console.log(inputStored)
+    console.log(time);
+    // inputStored.addClass("save-btn");
+    // inputStored.text($(this).attr("date-time", workHours[i].hour));
+    localStorage.setItem(time, inputStored);
+
+});
+
+
+$(".input.textarea").each(function () {
+    let savedInput = $(this).parent(".col-md-8").siblings(".col-md-2").children(".save-btn").attr("date-time");
+    let savedInfo = localStorage.getItem(savedInput);
+    $(this).val(savedInfo);
+});
+
+
+for (let i = 0; i < workHours.length; i++) {
+    if (workHours[i].hour < hourCompare) {
+        console.log(this);
+    }
 }
