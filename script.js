@@ -4,9 +4,9 @@ $("#currentDay").text(currentTime);
 
 
 // Puts currentTime components into an array
-let array = [];
-array.push(currentTime);
-console.log("Current time: " + array);
+// let array = [];
+// array.push(currentTime);
+// console.log("Current time: " + array);
 
 
 // Splits the currentTime components into three: day, date, time
@@ -52,15 +52,15 @@ let workHours = [
         minutes: ":00 PM"
     },
     {
-        hour: "22",
+        hour: "14",
         minutes: ":00 PM"
     },
     {
-        hour: "23",
+        hour: "15",
         minutes: ":00 PM"
     },
     {
-        hour: "24",
+        hour: "16",
         minutes: ":00 PM"
     }
 ];
@@ -84,6 +84,7 @@ for (let i = 0; i < workHours.length; i++) {
     let input = $('<input type = "text">');
     input.addClass("input textarea");
     input.attr("id", workHours[i].hour);
+    input.attr("size", "50");
     inputColumn.append(input);
     newRow.append(inputColumn);
 
